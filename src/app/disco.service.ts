@@ -50,9 +50,12 @@ export class DiscoService {
    * @param genero Nome ou identificador do gênero
    */
   encontrarGenero(genero) {
+    console.log(genero);
     if (isNumber(genero)) {
+      
       return this.generos.find(g => g.id == genero);
     } else {
+      
       return this.generos.find(g => g.nome == genero);
     }
   }
@@ -129,11 +132,38 @@ export class DiscoService {
       id: this.musicas.length + 1,
       titulo,
       idGenero: g.id,
-      artistas: listaArtistas
+      artistas: listaArtistas,
+      gostar: 0,
+      naoGostar: 0
     };
     this.musicas.push(musica);
     return musica;
   }
+
+  /**
+   * 
+   * @param 
+   */
+  gostar (musica){
+    console.log("1111");
+    musica.gostar ++;
+    console.log("aaaa");
+    if (musica.naoGostar > 0){
+      musica.naoGostar --;
+    }
+
+
+  }
+  naoGostar (musica){
+    console.log("nnnn");
+    musica.naoGostar ++;
+    console.log("aaaa");
+    if (musica.gostar > 0){
+      musica.gostar --;
+  }
+    
+  }
+
 
   /**
    * Encontra e retorna um artista.
@@ -210,6 +240,7 @@ export class DiscoService {
    * @param musica A música
    */
   preencherObjetoMusica(musica) {
+    
     let artistas = [];
     for (const artistaId of musica.artistas) {
       if (!isObject(artistaId)) {
@@ -243,4 +274,14 @@ export class DiscoService {
     }
     return this.artistas;
   }
+
+
+musicasDoGenero (genero){
+  genero.musicas = this.musicas.filter(musica => musica.idGenero == genero.id);
+      for (let musica of genero.musicas) {
+        this.preencherObjetoMusica(musica);
+      }
+      return genero.musicas;
+}
+
 }
