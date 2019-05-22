@@ -27,6 +27,6 @@
   <div>
     <i class="text-muted fas fa-tag"></i>
     &nbsp;
-    {{musica.genero.nome}}
+    <a [routerLink]="['/genero', musica.genero.id]">{{musica.genero.nome}}</a> 
   </div>
 </section>
