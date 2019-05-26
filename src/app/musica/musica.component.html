@@ -4,7 +4,7 @@
           <div class="col-8">
             <h1 class="mb-4 mt-5 border-bottom">{{musica.titulo}}</h1>
           </div>
-
+          <!-- Botoes de gostar e Não gostar-->
           <div class="col-2">          
              <a (click)="disco.gostar(musica)"> <i style="cursor: pointer" class="fas fa-thumbs-up fa-3x" ></i> </a> 
            {{musica.gostar}}
@@ -27,6 +27,7 @@
   <div>
     <i class="text-muted fas fa-tag"></i>
     &nbsp;
+    <!--Rota para o genero da musica -->
     <a [routerLink]="['/genero', musica.genero.id]">{{musica.genero.nome}}</a> 
   </div>
 </section>

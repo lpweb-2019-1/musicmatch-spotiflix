@@ -140,9 +140,10 @@ export class DiscoService {
     return musica;
   }
 
+  
   /**
    * 
-   * @param 
+   * incrementa o contador do atributo Gostar do objeto de musica e decrementa o atributo Não Gostar (se for maior que um).
    */
   gostar (musica){
     console.log("1111");
@@ -154,6 +155,7 @@ export class DiscoService {
 
 
   }
+// incrementa o contador do atributo Não Gostar do objeto de musica e decrementa o atributo Gostar (se for maior que um).
   naoGostar (musica){
     console.log("nnnn");
     musica.naoGostar ++;
@@ -275,6 +277,8 @@ export class DiscoService {
     return this.artistas;
   }
 
+
+  // retorna as musicas do genero passado como parametro.
 
 musicasDoGenero (genero){
   genero.musicas = this.musicas.filter(musica => musica.idGenero == genero.id);
