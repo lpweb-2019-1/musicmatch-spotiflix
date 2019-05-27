@@ -1,0 +1,21 @@
+<form>
+  <div class="form-group">
+    <h1 class="mb-4 mt-5 border-bottom"><label for="pesquisa">Pesquisar</label></h1>
+    <input (keyup)="onKey($event)" type="text" class="form-control" id="pesquisa" placeholder="Inserir conteúdo para pesquisa">
+  </div>
+</form>
+<div>
+  <ul>
+    <li *ngFor = "let v of valores"><!--verificação de classe não está funcionando-->
+      <a *ngIf = "v instanceof MusicaComponent" [routerLink]="[ '/musicas', musica.id ]">
+        <strong>{{ v.titulo }} </strong>
+      </a>
+      <a *ngIf = "v instanceof ArtistaComponent" [routerLink]="[ '/artistas', artista.id ]">
+        <strong>{{ v.nome }} </strong>
+      </a>
+      <a *ngIf = "v instanceof GeneroComponent" [routerLink]="[ '/generos', genero.id ]">
+        <strong>{{ v.nome }} </strong>
+      </a>
+    </li>
+  </ul>
+</div>

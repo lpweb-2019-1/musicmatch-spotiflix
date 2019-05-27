@@ -30,4 +30,7 @@
     <!--Rota para o genero da musica -->
     <a [routerLink]="['/genero', musica.genero.id]">{{musica.genero.nome}}</a> 
   </div>
+  <div>
+    <span *ngFor = "let r of recomendacao">{{r.nome}}</span><!--Como que eu chamo a lista de musica.component.ts?!!-->
+  </div>
 </section>

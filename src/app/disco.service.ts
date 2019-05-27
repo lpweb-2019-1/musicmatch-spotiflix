@@ -134,7 +134,7 @@ export class DiscoService {
       idGenero: g.id,
       artistas: listaArtistas,
       gostar: 0,
-      naoGostar: 0
+      naoGostar: 0,
     };
     this.musicas.push(musica);
     return musica;
@@ -152,7 +152,7 @@ export class DiscoService {
     if (musica.naoGostar > 0){
       musica.naoGostar --;
     }
-
+    this.recomendar(musica) //chama recomendar que está lá no final!!!
 
   }
 // incrementa o contador do atributo Não Gostar do objeto de musica e decrementa o atributo Gostar (se for maior que um).
@@ -162,7 +162,8 @@ export class DiscoService {
     console.log("aaaa");
     if (musica.gostar > 0){
       musica.gostar --;
-  }
+    }
+    this.recomendar(musica)//chama recomendar que está lá no final!!!
     
   }
 
@@ -286,6 +287,25 @@ musicasDoGenero (genero){
         this.preencherObjetoMusica(musica);
       }
       return genero.musicas;
+}
+
+recomendar(musica){// cada vez que a pessoa clicar em gostar/naoGostar gera uma lista com as recomendações
+  let recomendacao = [];
+  if (musica.gostar >= musica.naoGostar){
+    for(let m of this.musicas){
+      if(m.artista == musica.artista && m.genero == musica.genero){
+        recomendacao.push(m)
+      }
+    }
+  }
+  else{
+    for(let m of this.musicas){
+      if(m.artista != musica.artista && m.genero != musica.genero){
+        recomendacao.push(m)
+      }
+    }
+  }
+  return recomendacao
 }
 
 }
