@@ -290,22 +290,46 @@ musicasDoGenero (genero){
 }
 
 recomendar(musica){// cada vez que a pessoa clicar em gostar/naoGostar gera uma lista com as recomendações
+  
   let recomendacao = [];
   if (musica.gostar >= musica.naoGostar){
+    
     for(let m of this.musicas){
-      if(m.artista == musica.artista && m.genero == musica.genero){
+      
+      if(m.artistas == musica.artistas || m.genero == musica.genero){ // mudei de E para OU, pois tava indo somente a musica em questão
         recomendacao.push(m)
       }
     }
+   
+    return recomendacao
   }
   else{
+    
     for(let m of this.musicas){
-      if(m.artista != musica.artista && m.genero != musica.genero){
+   
+      if(m.genero != musica.genero){ // mudei de E para OU, pois tava indo somente a musica em questão
         recomendacao.push(m)
       }
     }
+   
+    return recomendacao
+    
   }
-  return recomendacao
+  
+}
+recomendar2 (musica){
+  console.log("entro metodo recomendar 2");
+  let recomendacao2 = [];
+  let listaMusicasGenero = this.musicasDoGenero(musica.genero);
+  let listaMusicasArtista  = this.listaDeMusicasDoArtista(musica.artistas[0]);
+  if (musica.gostar > musica.naoGostar){
+   return listaMusicasArtista.concat(listaMusicasGenero);
+
+
+
+  }
+    
+
 }
 
 }

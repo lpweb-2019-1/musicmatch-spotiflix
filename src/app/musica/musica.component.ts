@@ -17,7 +17,7 @@ export class MusicaComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.musica = this.disco.encontrarMusica(parseInt(id));
     this.disco.preencherObjetoMusica(this.musica);
-    this.recomendacao = this.disco.recomendar(parseInt(id))
+    this.recomendacao = this.disco.recomendar(this.musica); // mudei o parametro que tava passando o id, para o objeto de musica
   }
 
 }

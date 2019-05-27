@@ -6,7 +6,7 @@
 </form>
 <div>
   <ul>
-    <li *ngFor = "let v of valores"><!--verificação de classe não está funcionando-->
+   <!-- <li *ngFor = "let v of valores"> //verificação de classe não está funcionando
       <a *ngIf = "v instanceof MusicaComponent" [routerLink]="[ '/musicas', musica.id ]">
         <strong>{{ v.titulo }} </strong>
       </a>
@@ -16,6 +16,6 @@
       <a *ngIf = "v instanceof GeneroComponent" [routerLink]="[ '/generos', genero.id ]">
         <strong>{{ v.nome }} </strong>
       </a>
-    </li>
+    </li> -->
   </ul>
 </div>
