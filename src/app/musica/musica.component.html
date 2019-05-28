@@ -33,7 +33,7 @@
 
   &nbsp;
   <div>
-
-    <span *ngFor="let r of disco.recomendar2(musica)"> <h3>{{r.titulo}}</h3> </span><!--Como que eu chamo a lista de musica.component.ts?!!--> <!-- Res.: era apenas alguns espaços no ngFor, eu acho-->
+    <h3>Recomendações</h3>
+    <span *ngFor="let r of disco.recomendar(musica)"> <p>{{r.titulo}}</p> </span><!--Como que eu chamo a lista de musica.component.ts?!!--> <!-- Res.: era apenas alguns espaços no ngFor, eu acho-->
   </div>
 </section>
