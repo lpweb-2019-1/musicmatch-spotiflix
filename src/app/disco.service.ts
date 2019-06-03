@@ -134,7 +134,7 @@ export class DiscoService {
       idGenero: g.id,
       artistas: listaArtistas,
       gostar: 0,
-      naoGostar: 0
+      naoGostar: 0,
     };
     this.musicas.push(musica);
     return musica;
@@ -152,7 +152,7 @@ export class DiscoService {
     if (musica.naoGostar > 0){
       musica.naoGostar --;
     }
-
+    this.recomendar(musica) //chama recomendar que está lá no final!!!
 
   }
 // incrementa o contador do atributo Não Gostar do objeto de musica e decrementa o atributo Gostar (se for maior que um).
@@ -162,7 +162,8 @@ export class DiscoService {
     console.log("aaaa");
     if (musica.gostar > 0){
       musica.gostar --;
-  }
+    }
+    this.recomendar(musica)//chama recomendar que está lá no final!!!
     
   }
 
@@ -209,7 +210,7 @@ export class DiscoService {
   /**
    * Retorna a lista das músicas, preenchendo os atributos `artistas`
    * e `genero` com os respectivos objetos.
-   */
+  */
   listaDeMusicas() {
     for (let musica of this.musicas) {
       this.preencherObjetoMusica(musica);
@@ -288,4 +289,64 @@ musicasDoGenero (genero){
       return genero.musicas;
 }
 
+// recomendar(musica){// cada vez que a pessoa clicar em gostar/naoGostar gera uma lista com as recomendações
+  
+//   let recomendacao = [];
+//   if (musica.gostar >= musica.naoGostar){
+    
+//     for(let m of this.musicas){
+      
+//       if(m.artistas == musica.artistas || m.genero == musica.genero){ // mudei de E para OU, pois tava indo somente a musica em questão
+//         recomendacao.push(m)
+//       }
+//     }
+   
+//     return recomendacao
+//   }
+//   else{
+    
+//     for(let m of this.musicas){
+   
+//       if(m.genero != musica.genero){ // mudei de E para OU, pois tava indo somente a musica em questão
+//         recomendacao.push(m)
+//       }
+//     }
+   
+//     return recomendacao
+    
+//   }
+  
+// }
+
+recomendar (musica){
+  console.log("entro metodo recomendar");
+  
+  let listaMusicasGenero = this.musicasDoGenero(musica.genero);
+  let listaMusicasArtista  = this.listaDeMusicasDoArtista(musica.artistas[0]);
+  let recomendacao = [];
+
+  if (musica.gostar > musica.naoGostar){
+   for (let m of listaMusicasArtista.concat(listaMusicasGenero)){
+     if (m != musica){
+       recomendacao.push(m);
+     }
+   }
+   return recomendacao
+
+  }
+  if (musica.gostar < musica.naoGostar){
+    for ( let m of this.musicas){
+      console.log(this.encontrarArtista(musica.artistas[0].id));
+      if ( musica.idGenero != m.idGenero && this.encontrarArtista(musica.artistas[0].id) != this.encontrarArtista(m.artistas[0].id) ){
+        recomendacao.push(m);
+      }
+    }
+
+  return recomendacao;    
+  }
 }
+    
+
+}
+
+

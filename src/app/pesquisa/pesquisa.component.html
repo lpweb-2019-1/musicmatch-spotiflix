@@ -1,0 +1,13 @@
+<form>
+  <div class="form-group">
+    <h1 class="mb-4 mt-5 border-bottom"><label for="pesquisa">Pesquisar</label></h1>
+    <input (keyup)="onKey($event)" type="text" class="form-control" id="pesquisa" placeholder="Inserir conteúdo para pesquisa">
+  </div>
+</form>
+<div>
+  <ul>
+   <li *ngFor = "let v of valores"> <!-- verificação de classe não está funcionando -->
+      {{v.nome || v.titulo}}
+    </li>
+  </ul>
+</div>
